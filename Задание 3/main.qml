@@ -6,7 +6,7 @@ Window {
     visible: true
     width: 400
     height: 600
-    title: qsTr("Layout-Based UI with Margins")
+    title: qsTr("Пример вёрстки с layuot ами")
 
     ColumnLayout {
         anchors.fill: parent

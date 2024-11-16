@@ -5,7 +5,7 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Flower")
+    title: qsTr("Цветочек")
     id: win
 
     Item {
