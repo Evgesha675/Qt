@@ -7,6 +7,7 @@
 ![3](/screenshots/{95E160BE-35E7-4A6C-95CE-C3FDCE798C42}.png)
 # 4 задание
 ![4](/screenshots/{2FA02D5D-D336-4009-97E8-0BF3ED13B08C}.png)
-
+# 5 задание
+![5](/screenshots/Запись-экрана-2024-11-30-112332.gif)
 
 
