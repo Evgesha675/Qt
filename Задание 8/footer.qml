@@ -1,11 +1,11 @@
-import QtQuick 2.0
+import QtQuick 2.15
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 
 Rectangle {
     id: root
     height: 60
-    width: parent.width
+    width: parent ? parent.width : 360 // Устанавливаем ширину по умолчанию, если parent не задан
     gradient: Gradient {
         GradientStop { position: 0; color: "lightgray" }
         GradientStop { position: 1; color: "white" }
@@ -15,14 +15,11 @@ Rectangle {
 
     RowLayout {
         anchors.fill: parent
-        spacing: 0
+        spacing: 8 // Отступ между элементами
 
         TextField {
             id: edtText
             Layout.fillWidth: true
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-            Layout.preferredHeight: parent.height
             placeholderText: "Write a message..."
             font.pointSize: 16
             color: "black"
@@ -30,13 +27,14 @@ Rectangle {
 
         Button {
             id: btnAddItem
-            Layout.preferredWidth: parent.height
-            Layout.preferredHeight: parent.height
-            font.pointSize: 16
+            Layout.preferredWidth: 60
+            Layout.preferredHeight: 40
             text: ">"
             onClicked: {
-                newMessage(edtText.text);
-                edtText.clear();
+                if (edtText.text.trim() !== "") {
+                    newMessage(edtText.text.trim());
+                    edtText.clear();
+                }
             }
         }
     }

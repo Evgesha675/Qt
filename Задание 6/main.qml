@@ -14,7 +14,7 @@ ApplicationWindow {
 
         Rectangle {
             id: firstPage
-            color: "red"
+            color: "blue"
 
         }
 

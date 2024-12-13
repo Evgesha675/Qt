@@ -13,7 +13,6 @@ Window {
     ListModel {
         id: my_model
         ListElement { name: "Пример сообщения"; time: "Тута время" }
-        
     }
 
     Page {
@@ -38,8 +37,9 @@ Window {
                     anchors.margins: 8
 
                     Column {
-                        anchors.fill: parent
                         anchors.margins: 8
+                        width: parent.width - 16
+                        spacing: 4
 
                         Text {
                             text: "Сообщение: \n" + name
@@ -50,22 +50,29 @@ Window {
                             text: "Time: " + time
                             font.pointSize: 10
                             color: "gray"
-                            anchors.right: parent.right
-                            anchors.bottom: parent.bottom
                         }
                     }
                 }
             }
         }
 
-        Footer {
-            id: footer
+        Loader {
+            id: footerLoader
+            source: "footer.qml"
             anchors.bottom: parent.bottom
-            onNewMessage: {
-                var newMsg = {};
-                newMsg.name = msg;
-                newMsg.time = Qt.formatTime(new Date(), "hh:mm");
-                my_model.append(newMsg);
+            width: parent.width
+            height: 60
+
+            onLoaded: {
+                if (footerLoader.item) {
+                    footerLoader.item.newMessage.connect(function(msg) {
+                        var newMsg = {
+                            name: msg,
+                            time: Qt.formatTime(new Date(), "hh:mm")
+                        };
+                        my_model.append(newMsg);
+                    });
+                }
             }
         }
     }
