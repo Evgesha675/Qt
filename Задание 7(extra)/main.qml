@@ -10,7 +10,7 @@ Window {
     minimumWidth: 360
     minimumHeight: 640
     visible: true
-    title: qsTr("StackView_test")
+    title: qsTr("7extra")
     property int defMargin: 10
 
     StackView {
