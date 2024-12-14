@@ -24,7 +24,12 @@ Window {
         backgroundColor: "red"
         buttonText: "To Green"
         onButtonClicked: {
-            stack_view.push(page2)
+            // Проверка, если страница2 уже в стеке, заменим её, иначе пушим
+            if (stack_view.depth > 1 && stack_view.itemAt(1).id === page2) {
+                stack_view.replace(page2)
+            } else {
+                stack_view.push(page2)
+            }
         }
         onBackButtonClicked: {
             stack_view.pop() // Возврат на предыдущую страницу при нажатии кнопки "Назад"
@@ -36,22 +41,33 @@ Window {
         backgroundColor: "green"
         buttonText: "To Yellow"
         onButtonClicked: {
-            stack_view.push(page3)
+            // Проверка, если страница3 уже в стеке, заменим её, иначе пушим
+            if (stack_view.depth > 2 && stack_view.itemAt(2).id === page3) {
+                stack_view.replace(page3)
+            } else {
+                stack_view.push(page3)
+            }
         }
         onBackButtonClicked: {
             stack_view.pop() // Возврат на предыдущую страницу при нажатии кнопки "Назад"
         }
     }
 
-    My_Page {
+   My_Page {
         id: page3
         backgroundColor: "yellow"
         buttonText: "To Red"
         onButtonClicked: {
-            stack_view.pop(page1)
+            // Переключаем на страницу1 с проверкой, чтобы не было дублей
+            if (stack_view.depth === 3) {
+                stack_view.pop() // Убираем страницу 3 из стека, чтобы вернуться к page2 
+                stack_view.pop() // Убираем страницу 2 из стека, чтобы вернуться к page1 
+            } else {
+                stack_view.push(page1) // Если page1 не в стеке, добавляем её
+            }
         }
         onBackButtonClicked: {
             stack_view.pop() // Возврат на предыдущую страницу при нажатии кнопки "Назад"
         }
-    }
+   }
 }
