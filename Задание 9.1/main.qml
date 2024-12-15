@@ -4,8 +4,12 @@ import QtQuick.Layouts 1.15
 
 ApplicationWindow {
     visible: true
-    width: 300
-    height: 400
+     width: 360
+    height: 640
+    maximumWidth: 360
+    maximumHeight: 640
+    minimumWidth: 360
+    minimumHeight: 640
     title: "Password Input"
 
     // Ввод пароля
